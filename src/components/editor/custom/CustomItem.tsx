@@ -13,6 +13,8 @@ import Field from "../Field";
 
 import { CustomItem as CustomItemType } from "@/types/resume";
 import ThemeModal from "@/components/shared/ThemeModal";
+import { Input } from "@/components/ui/input";
+import { useTranslations } from "@/i18n/compat/client";
 const CustomItemEditor = ({
   item,
   onSave,
@@ -20,6 +22,7 @@ const CustomItemEditor = ({
   item: CustomItemType;
   onSave: (item: CustomItemType) => void;
 }) => {
+  const t = useTranslations("workbench.customItem");
   const handleChange = (field: keyof CustomItemType, value: string) => {
     onSave({ ...item, [field]: value });
   };
@@ -42,6 +45,26 @@ const CustomItemEditor = ({
           />
         </div>
 
+        <div className="space-y-2">
+          <span className="text-sm font-medium text-foreground">{t("labels.link")}</span>
+          <div className="rounded-lg border border-input bg-background/40 p-3">
+            <div className="grid gap-3 md:grid-cols-2">
+              <label className="block space-y-1.5">
+                <span className="text-xs text-muted-foreground">{t("labels.link")}</span>
+                <Input value={item.link || ""} onChange={event => handleChange("link", event.target.value)} placeholder={t("placeholders.link")} />
+              </label>
+              <label className="block space-y-1.5">
+                <span className="text-xs text-muted-foreground">{t("labels.linkLabel")}</span>
+                <Input value={item.linkLabel || ""} disabled={item.linkOnTitle === true} onChange={event => handleChange("linkLabel", event.target.value)} placeholder={t("placeholders.linkLabel")} />
+              </label>
+            </div>
+            <label className="mt-3 flex cursor-pointer items-center gap-2 text-sm">
+              <input type="checkbox" className="h-4 w-4 shrink-0 accent-primary" checked={item.linkOnTitle === true} onChange={event => onSave({ ...item, linkOnTitle: event.target.checked })} />
+              <span>{t("labels.linkOnTitle")}</span>
+            </label>
+            <p className="mt-3 text-xs text-muted-foreground">{t(item.linkOnTitle === true ? "hints.linkOnTitle" : "hints.linkLabel")}</p>
+          </div>
+        </div>
         <Field
           label="时间范围"
           value={item.dateRange}

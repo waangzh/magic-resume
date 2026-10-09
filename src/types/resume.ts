@@ -117,6 +117,7 @@ export interface Project {
   visible: boolean;
   link?: string;
   linkLabel?: string;
+  linkOnTitle?: boolean;
 }
 
 export interface Certificate {
@@ -154,6 +155,9 @@ export interface CustomItem {
   dateRange: string;
   description: string;
   visible: boolean;
+  link?: string;
+  linkLabel?: string;
+  linkOnTitle?: boolean;
 }
 
 export const THEME_COLORS = [

@@ -2,6 +2,8 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SectionTitle from "./SectionTitle";
 import SectionWrapper from "../../shared/SectionWrapper";
+import LinkedTitle from "../../shared/LinkedTitle";
+import CustomItemLink from "../../shared/CustomItemLink";
 import { GlobalSettings, CustomItem } from "@/types/resume";
 import { normalizeRichTextContent } from "@/lib/richText";
 import { formatDateString } from "@/lib/utils";
@@ -35,7 +37,7 @@ const CustomSection = ({ sectionId, title, items, globalSettings, showTitle = tr
                                         className="font-extrabold text-slate-800 tracking-tight"
                                         style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}
                                     >
-                                        {item.title}
+                                        <LinkedTitle link={item.link} enabled={item.linkOnTitle}>{item.title}</LinkedTitle>
                                     </h4>
                                     {centerSubtitle && (
                                         <span 
@@ -64,6 +66,7 @@ const CustomSection = ({ sectionId, title, items, globalSettings, showTitle = tr
                             )}
 
                             {/* 自定义描述：移除 text-justify 修复列表小点拉伸 bug */}
+                            <CustomItemLink item={item} fontSize={globalSettings?.subheaderSize || 16} />
                             {item.description && (
                                 <motion.div layout="position" className="relative pl-4 mt-2.5">
                                     <div 

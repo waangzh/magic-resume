@@ -72,13 +72,23 @@ const ProjectEditor: React.FC<ProjectEditorProps> = ({ project, onSave }) => {
                 <Input
                   type="text"
                   value={project.linkLabel || ""}
+                  disabled={project.linkOnTitle === true}
                   onChange={(e) => handleChange("linkLabel", e.target.value)}
                   placeholder={t("placeholders.linkLabel")}
                 />
               </label>
             </div>
+            <label className="mt-3 flex cursor-pointer items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                className="h-4 w-4 shrink-0 accent-primary"
+                checked={project.linkOnTitle === true}
+                onChange={event => onSave({ ...project, linkOnTitle: event.target.checked })}
+              />
+              <span>{t("labels.linkOnTitle")}</span>
+            </label>
             <p className="mt-3 text-xs text-muted-foreground">
-              {t("hints.linkLabel")}
+              {t(project.linkOnTitle === true ? "hints.linkOnTitle" : "hints.linkLabel")}
             </p>
           </div>
         </div>

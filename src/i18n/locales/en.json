@@ -759,6 +759,21 @@
         "link": "Project link "
       }
     },
+    "customItem": {
+      "labels": {
+        "link": "Link URL",
+        "linkLabel": "Display Text",
+        "linkOnTitle": "Link title"
+      },
+      "placeholders": {
+        "link": "https://example.com",
+        "linkLabel": "Display text"
+      },
+      "hints": {
+        "linkLabel": "If display text is empty, the full URL will be shown. Only http:// and https:// links are supported.",
+        "linkOnTitle": "Click the title to open the link without a separate link label. Only http:// and https:// links are supported."
+      }
+    },
     "projectItem": {
       "labels": {
         "name": "Project Name",
@@ -767,7 +782,8 @@
         "description": "Project Description",
         "technologies": "Tech Stack",
         "link": "Project Link",
-        "linkLabel": "Display Text"
+        "linkLabel": "Display Text",
+        "linkOnTitle": "Link project name"
       },
       "placeholders": {
         "name": "Enter project name",
@@ -779,7 +795,8 @@
         "linkLabel": "Display text"
       },
       "hints": {
-        "linkLabel": "If display text is empty, the domain or full URL will be shown automatically. Only http:// and https:// links are supported."
+        "linkLabel": "If display text is empty, the domain or full URL will be shown automatically. Only http:// and https:// links are supported.",
+        "linkOnTitle": "Click the project name to open the link without a separate link label. Only http:// and https:// links are supported."
       },
       "buttons": {
         "edit": "Edit",

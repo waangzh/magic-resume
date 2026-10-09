@@ -55,3 +55,8 @@ export const getProjectLinkMeta = (
     title: project.link?.trim() || href,
   };
 };
+
+export const getStandaloneProjectLinkMeta = (
+  project: Pick<Project, "link" | "linkLabel" | "linkOnTitle">,
+  options?: { preferFullUrl?: boolean }
+) => project.linkOnTitle === true ? null : getProjectLinkMeta(project, options);

@@ -6,7 +6,8 @@ import { Project, GlobalSettings } from "@/types/resume";
 import { normalizeRichTextContent } from "@/lib/richText";
 import { formatDateString } from "@/lib/utils";
 import { useLocale } from "@/i18n/compat/client";
-import { getProjectLinkMeta } from "@/lib/projectLink";
+import { getStandaloneProjectLinkMeta } from "@/lib/projectLink";
+import ProjectName from "../../shared/ProjectName";
 
 interface ProjectSectionProps {
     projects: Project[];
@@ -26,7 +27,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, globalSetting
             <motion.div layout="position">
                 <AnimatePresence mode="popLayout">
                     {visibleProjects.map((project) => {
-                        const projectLink = getProjectLinkMeta(project, {
+                        const projectLink = getStandaloneProjectLinkMeta(project, {
                             preferFullUrl: centerSubtitle,
                         });
 
@@ -34,7 +35,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, globalSetting
                         <motion.div key={project.id} style={{ marginTop: `${globalSettings?.paragraphSpacing}px` }}>
                             <motion.div className={`flex items-center gap-2 ${flexLayout && centerSubtitle && project.role ? "resume-item-header--flexible-center" : ""}`}>
                                 <div className={`flex items-center gap-2 ${flexLayout ? "" : "flex-[1.5]"}`}>
-                                    <h3 className="font-bold" style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>{project.name}</h3>
+                                    <h3 className="font-bold" style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}><ProjectName project={project} /></h3>
                                 </div>
                                 {projectLink && !centerSubtitle && (
                                     <a href={projectLink.href} target="_blank" rel="noopener noreferrer"

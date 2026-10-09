@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import SectionTitle from "./SectionTitle";
 import SectionWrapper from "../../shared/SectionWrapper";
+import LinkedTitle from "../../shared/LinkedTitle";
+import CustomItemLink from "../../shared/CustomItemLink";
 import { GlobalSettings, CustomItem } from "@/types/resume";
 import { normalizeRichTextContent } from "@/lib/richText";
 import { formatDateString } from "@/lib/utils";
@@ -28,7 +30,7 @@ const CustomSection = ({ sectionId, title, items, globalSettings, showTitle = tr
                     <motion.div key={item.id} layout="position" style={{ marginTop: `${globalSettings?.paragraphSpacing}px` }}>
                         <motion.div layout="position" className={`flex items-center gap-2 ${flexLayout && centerSubtitle && item.subtitle ? "resume-item-header--flexible-center" : ""}`}>
                             <div className={`flex items-center gap-2 ${flexLayout ? "" : "flex-[1.5]"}`}>
-                                <h4 className="font-bold" style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>{item.title}</h4>
+                                <h4 className="font-bold" style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}><LinkedTitle link={item.link} enabled={item.linkOnTitle}>{item.title}</LinkedTitle></h4>
                             </div>
                             {centerSubtitle && (
                                 <motion.div layout="position" className={`text-subtitleFont ${flexLayout ? "ml-[16px]" : "flex-1"}`} style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>
@@ -42,6 +44,7 @@ const CustomSection = ({ sectionId, title, items, globalSettings, showTitle = tr
                         {!centerSubtitle && item.subtitle && (
                             <motion.div layout="position" className="text-subtitleFont mt-1" style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>{item.subtitle}</motion.div>
                         )}
+                        <CustomItemLink item={item} fontSize={globalSettings?.subheaderSize || 16} />
                         {item.description && (
                             <motion.div layout="position" className="mt-1 text-baseFont"
                                 style={{ fontSize: `${globalSettings?.baseFontSize || 14}px`, lineHeight: globalSettings?.lineHeight || 1.6 }}

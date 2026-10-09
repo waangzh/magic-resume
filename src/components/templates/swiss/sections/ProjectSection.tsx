@@ -7,7 +7,8 @@ import { Project, GlobalSettings } from "@/types/resume";
 import { normalizeRichTextContent } from "@/lib/richText";
 import { formatDateString } from "@/lib/utils";
 import { useLocale } from "@/i18n/compat/client";
-import { getProjectLinkMeta } from "@/lib/projectLink";
+import { getStandaloneProjectLinkMeta } from "@/lib/projectLink";
+import ProjectName from "../../shared/ProjectName";
 
 interface ProjectSectionProps {
     projects: Project[];
@@ -27,7 +28,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, globalSetting
             <motion.div layout="position" className="flex flex-col gap-6" style={{ marginTop: `${globalSettings?.paragraphSpacing || 16}px` }}>
                 <AnimatePresence mode="popLayout">
                     {visibleProjects.map((project) => {
-                        const projectLink = getProjectLinkMeta(project, {
+                        const projectLink = getStandaloneProjectLinkMeta(project, {
                             preferFullUrl: centerSubtitle,
                         });
 
@@ -40,7 +41,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, globalSetting
                                             className="font-extrabold text-slate-800 tracking-tight"
                                             style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}
                                         >
-                                            {project.name}
+                                            <ProjectName project={project} />
                                         </h4>
                                         {centerSubtitle && (
                                             <span 

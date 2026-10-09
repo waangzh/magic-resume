@@ -210,10 +210,15 @@ const renderProjectSection = (title: string, resume: ResumeData) => {
       const linkMeta = getProjectLinkMeta(item, { preferFullUrl: true });
       const lines: string[] = [];
 
-      if (heading) lines.push(`### ${heading}`);
+      if (heading) {
+        const linkedHeading = item.linkOnTitle === true && linkMeta
+          ? `[${heading.replace(/[\\\[\]]/g, "\\$&")}](<${linkMeta.href.replace(/[<>\s]/g, character => encodeURIComponent(character))}>)`
+          : heading;
+        lines.push(`### ${linkedHeading}`);
+      }
       if (meta) lines.push(`_${meta}_`);
       if (description) lines.push(description);
-      if (linkMeta?.href) {
+      if (linkMeta?.href && item.linkOnTitle !== true) {
         lines.push(`[${normalizeText(linkMeta.label) || linkMeta.href}](${linkMeta.href})`);
       }
 
@@ -284,10 +289,17 @@ const renderCustomSection = (title: string, items: CustomItem[]) => {
         .filter(Boolean)
         .join(" | ");
       const lines: string[] = [];
+      const linkMeta = getProjectLinkMeta(item, { preferFullUrl: true });
 
-      if (heading) lines.push(`### ${heading}`);
+      if (heading) {
+        const linkedHeading = item.linkOnTitle === true && linkMeta
+          ? `[${heading.replace(/[\\\[\]]/g, "\\$&")}](<${linkMeta.href.replace(/[<>\s]/g, character => encodeURIComponent(character))}>)`
+          : heading;
+        lines.push(`### ${linkedHeading}`);
+      }
       if (metadata) lines.push(`_${metadata}_`);
       if (details) lines.push(details);
+      if (linkMeta && item.linkOnTitle !== true) lines.push(`[${normalizeText(linkMeta.label) || linkMeta.href}](${linkMeta.href})`);
 
       return lines.join("\n\n");
     })

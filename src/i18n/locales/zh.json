@@ -718,6 +718,21 @@
         "link": "项目链接"
       }
     },
+    "customItem": {
+      "labels": {
+        "link": "链接地址",
+        "linkLabel": "显示文字",
+        "linkOnTitle": "标题作为链接"
+      },
+      "placeholders": {
+        "link": "https://example.com",
+        "linkLabel": "显示文字"
+      },
+      "hints": {
+        "linkLabel": "显示文字留空时，将显示完整链接。链接仅支持 http:// 或 https:// 链接。",
+        "linkOnTitle": "点击标题即可打开链接，不再单独显示链接文字。链接仅支持 http:// 或 https:// 链接。"
+      }
+    },
     "projectItem": {
       "labels": {
         "name": "项目名称",
@@ -725,7 +740,8 @@
         "date": "项目时间",
         "description": "项目描述",
         "link": "项目链接",
-        "linkLabel": "显示文字"
+        "linkLabel": "显示文字",
+        "linkOnTitle": "项目名称作为链接"
       },
       "placeholders": {
         "name": "请输入项目名称",
@@ -736,7 +752,8 @@
         "linkLabel": "显示文字"
       },
       "hints": {
-        "linkLabel": "显示文字留空时，将自动显示域名或完整链接。链接仅支持 http:// 或 https:// 链接。"
+        "linkLabel": "显示文字留空时，将自动显示域名或完整链接。链接仅支持 http:// 或 https:// 链接。",
+        "linkOnTitle": "点击项目名称即可打开链接，不再单独显示链接文字。链接仅支持 http:// 或 https:// 链接。"
       },
       "buttons": {
         "edit": "编辑",
