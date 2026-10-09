@@ -24,7 +24,7 @@ const EducationSection = ({ education, globalSettings, showTitle = true }: Educa
             <AnimatePresence mode="popLayout">
                 {visibleEducation?.map((edu) => (
                     <motion.div key={edu.id} layout="position" style={{ marginTop: `${globalSettings?.paragraphSpacing}px` }}>
-                        <motion.div layout="position" className="flex items-center gap-2">
+                        <motion.div layout="position" className={`flex items-center gap-2 ${flexLayout && centerSubtitle && (edu.major || edu.degree || edu.gpa) ? "resume-item-header--flexible-center" : ""}`}>
                             <div className={`font-bold ${flexLayout ? "" : "flex-[1.5]"}`} style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>
                                 {edu.school}
                             </div>

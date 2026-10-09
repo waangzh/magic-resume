@@ -25,7 +25,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences, glob
             <AnimatePresence mode="popLayout">
                 {visibleExperiences?.map((exp) => (
                     <motion.div key={exp.id} layout="position" style={{ marginTop: `${globalSettings?.paragraphSpacing}px` }}>
-                        <motion.div className="flex items-center gap-2">
+                        <motion.div className={`flex items-center gap-2 ${flexLayout && centerSubtitle && exp.position ? "resume-item-header--flexible-center" : ""}`}>
                             <div className={`font-bold ${flexLayout ? "" : "flex-[1.5]"}`} style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>
                                 {exp.company}
                             </div>

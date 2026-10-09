@@ -32,7 +32,7 @@ const EducationSection = ({ education, globalSettings, showTitle = true, variant
             <AnimatePresence mode="popLayout">
                 {visibleEducation?.map((edu) => (
                     <motion.div key={edu.id} layout="position" style={{ marginTop: isSidebar ? "12px" : `${globalSettings?.paragraphSpacing}px` }}>
-                        <div className={cn("flex gap-4 items-center justify-between", isSidebar && "flex-col items-start gap-1")}>
+                        <div className={cn("flex gap-4 items-center justify-between", !isSidebar && flexLayout && centerSubtitle && (edu.major || edu.degree || edu.gpa) && "resume-item-header--flexible-center", isSidebar && "flex-col items-start gap-1")}>
                             <div className={cn("font-bold truncate", !flexLayout && !isSidebar && "flex-1")}
                                 style={{ fontSize: `${isSidebar ? (globalSettings?.baseFontSize || 14) + 2 : (globalSettings?.subheaderSize || 16)}px`, color: isSidebar ? "#fff" : "inherit" }}>
                                 {edu.school}

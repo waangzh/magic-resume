@@ -26,7 +26,7 @@ const CustomSection = ({ sectionId, title, items, globalSettings, showTitle = tr
             <AnimatePresence mode="popLayout">
                 {visibleItems.map((item) => (
                     <motion.div key={item.id} layout="position" style={{ marginTop: `${globalSettings?.paragraphSpacing}px` }}>
-                        <motion.div layout="position" className="flex items-center gap-2">
+                        <motion.div layout="position" className={`flex items-center gap-2 ${flexLayout && centerSubtitle && item.subtitle ? "resume-item-header--flexible-center" : ""}`}>
                             <div className={`flex items-center gap-2 ${flexLayout ? "" : "flex-[1.5]"}`}>
                                 <h4 className="font-bold" style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>{item.title}</h4>
                             </div>

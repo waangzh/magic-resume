@@ -2,6 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Keep the centered subtitle in its own column when long-title mode is on.
+ * The title receives the larger share, while the subtitle gives up space and
+ * wraps inside the middle column instead of drifting next to the title.
+ */
+.resume-item-header--flexible-center {
+  display: grid !important;
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(0, 1fr)
+    minmax(max-content, 1fr);
+  align-items: baseline !important;
+}
+
+.resume-item-header--flexible-center > * {
+  min-width: 0;
+  margin-left: 0 !important;
+}
+
+.resume-item-header--flexible-center > :first-child,
+.resume-item-header--flexible-center > :nth-child(2),
+.resume-item-header--flexible-center > :first-child *,
+.resume-item-header--flexible-center > :nth-child(2) * {
+  overflow: visible !important;
+  overflow-wrap: anywhere;
+  text-overflow: clip !important;
+  white-space: normal !important;
+}
+
+.resume-item-header--flexible-center > :last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
 /* 隐藏数字输入框自带的上下箭头 */
 @layer utilities {
   .no-spinner::-webkit-inner-spin-button,

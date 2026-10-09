@@ -32,7 +32,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, globalSetting
 
                         return (
                         <motion.div key={project.id} style={{ marginTop: `${globalSettings?.paragraphSpacing}px` }}>
-                            <motion.div className="flex items-center gap-2">
+                            <motion.div className={`flex items-center gap-2 ${flexLayout && centerSubtitle && project.role ? "resume-item-header--flexible-center" : ""}`}>
                                 <div className={`flex items-center gap-2 ${flexLayout ? "" : "flex-[1.5]"}`}>
                                     <h3 className="font-bold" style={{ fontSize: `${globalSettings?.subheaderSize || 16}px` }}>{project.name}</h3>
                                 </div>
